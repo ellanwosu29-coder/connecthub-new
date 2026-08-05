@@ -1,0 +1,404 @@
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f2f5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================
+   MAIN LOGIN CONTAINER (Split Screen)
+   ============================================ */
+.login-wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+/* ============================================
+   LEFT SIDEBAR (Laptop Only)
+   ============================================ */
+.sidebar {
+    flex: 4;
+    /* background: linear-gradient(135deg, #075E54 0%, #128C7E 50%, #25D366 100%); */
+    background-color: #f0f5f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 40px; */
+    color: white;
+}
+
+.sidebar-content {
+    gap: 20px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    /* padding: 60px; */
+    max-width: 200px;
+}
+
+.sidebar-content img {
+    width: 60px;
+    /* margin-bottom: 30px; */
+}
+
+.phone-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.phone-img img{
+    width: 170%;
+}
+
+.sidebar-content h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000000;
+    text-align: start;
+}
+
+.sidebar-content h1 span{
+    color: #25D366;
+    font-size: 30px;
+}
+
+.sidebar-content p {
+    font-size: 14px;
+    width: 75%;
+    color: #000000;
+    line-height: 1.6;
+    
+}
+
+/* ============================================
+   RIGHT SIDE (Login Form)
+   ============================================ */
+.login-container {
+    flex: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 40px;
+    width: 80%;
+    background-color: #fafafa;
+}
+
+.login-box {
+    width: 30%;
+    max-width: 420px;
+    width: 30rem;
+}
+
+/* ============================================
+   WELCOME SECTION
+   ============================================ */
+.welcome-back {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-back .mobile-logo {
+    display: none;
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+.welcome-back h1 {
+    font-size: 28px;
+    color: #075E54;
+    font-weight: 700;
+}
+
+.welcome-back p {
+    color: #8D8D8D;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* ============================================
+   INPUT FIELDS
+   ============================================ */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: #f8f9fa;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #25D366;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+}
+
+/* ============================================
+   FORGOT PASSWORD
+   ============================================ */
+.forgot-link {
+    text-align: right;
+    margin-bottom: 24px;
+}
+
+.forgot-link a {
+    color: #075E54;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.forgot-link a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+    background: #1DA851;
+}
+
+/* ============================================
+   DIVIDER (OR)
+   ============================================ */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 24px 0;
+    color: #8D8D8D;
+    font-size: 14px;
+}
+
+.divider hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+/* ============================================
+   GOOGLE BUTTON
+   ============================================ */
+.btn-google {
+    width: 100%;
+    padding: 14px;
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-google:hover {
+    background: #f5f5f5;
+    border-color: #25D366;
+}
+
+.btn-google img {
+    width: 20px;
+}
+
+/* ============================================
+   SIGN UP LINK
+   ============================================ */
+.signup-text {
+    text-align: center;
+    margin-top: 24px;
+    color: #8D8D8D;
+    font-size: 15px;
+}
+
+.signup-text a {
+    color: #075E54;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   ERROR MESSAGE
+   ============================================ */
+.error-msg {
+    color: #f38ba8;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE (Hide Sidebar)
+   ============================================ */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .login-container {
+        flex: 1;
+        padding: 20px;
+        background: #ffffff;
+        /* width: 50% !important; */
+        /* padding: 70px; */
+    }
+
+    .login-box {
+        max-width: 100%;
+        /* padding: 70px; */
+    }
+
+    .welcome-back .mobile-logo {
+        display: block;
+    }
+}
+
+/* ============================================
+   RESPONSIVE: TABLET
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar-content h1 {
+        font-size: 32px;
+    }
+
+    .sidebar-content p {
+        font-size: 16px;
+    }
+
+    .login-box {
+        max-width: 360px;
+    }
+}
+
+/* ============================================
+   TERMS CHECKBOX
+   ============================================ */
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #25D366;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.terms-checkbox label {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.terms-checkbox label a {
+    color: #075E54;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.terms-checkbox label a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   SUCCESS MESSAGE
+   ============================================ */
+.success-msg {
+    color: #25D366;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .login-container {
+        padding: 20px;
+    }
+
+    .welcome-back h1 {
+        font-size: 24px;
+    }
+
+    .welcome-back p {
+        font-size: 14px;
+    }
+
+    .input-group input {
+        font-size: 15px;
+        padding: 12px 16px;
+    }
+
+    .btn-login {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE: TABLET
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar-content h1 {
+        font-size: 30px;
+    }
+
+    .login-box {
+        max-width: 380px;
+    }
+}

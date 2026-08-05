@@ -1,0 +1,323 @@
+/* ===== LIGHT MODE (Default) ===== */
+:root {
+    --sidebar-bg: #f0f5ff;
+    --sidebar-border: #e0e0e0;
+    --sidebar-icon: #54656f;
+    --sidebar-icon-hover: #1a1a1a;
+    --sidebar-hover-bg: #f0f2f5;
+    --sidebar-active-bg: #f0f5ff;
+    --sidebar-active-icon: #00a884;
+    --sidebar-active-border: #00a884;
+    --body-bg: #f7f8ff;
+    --hm-msg-sent: #7b39ed;
+    --hm-msg-recieved: #e6eeff;
+    --hm-msg-recieved-color: #1a1a1a;
+    --hm-msg-sender: #640fd4;
+    --hm-modal-input: #f0f5ff;
+}
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] {
+    --sidebar-bg: #060e21;
+    --sidebar-border: #222d34;
+    --sidebar-icon: #aebac1;
+    --sidebar-icon-hover: #e9edef;
+    --sidebar-hover-bg: #202c33;
+    --sidebar-active-bg: #282254;
+    --sidebar-active-icon: #00a884;
+    --sidebar-active-border: #00a884;
+    --body-bg: #0b1326;
+    --hmbar-bg: #131b2e;
+    --hm-msg-sent: #6e2adb;
+    --hm-msg-recieved: #161d36;
+    --hm-msg-recieved-color: #ffffff;
+    --hm-msg-sender: #702cde;
+}
+
+/* ============================================
+   SIDEBAR - Desktop
+   ============================================ */
+.side-bar {
+    width: 60px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-right: 1px solid var(--sidebar-border);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===== MENU LISTS ===== */
+.menu-top,
+.menu-bottom {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+/* ===== ICON BUTTONS ===== */
+.menu-top li,
+.menu-bottom li {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative;
+}
+
+/* ===== ICONS ===== */
+.menu-top li i,
+.menu-bottom li i {
+    font-size: 24px;
+    color: var(--sidebar-icon);
+    transition: color 0.2s ease, transform 0.3s ease;
+    pointer-events: none; /* clicks go to the <li> */
+}
+
+/* ===== HOVER ===== */
+.menu-top li:hover,
+.menu-bottom li:hover {
+    background-color: var(--sidebar-hover-bg);
+}
+
+.menu-top li:hover i,
+.menu-bottom li:hover i {
+    color: var(--sidebar-icon-hover);
+}
+
+/* ===== ACTIVE STATE ===== */
+.menu-top li.active {
+    background-color: var(--sidebar-active-bg);
+}
+
+.menu-top li.active i {
+    color: var(--sidebar-active-icon);
+}
+
+/* Green left border (desktop) */
+.menu-top li.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 22px;
+    background-color: var(--sidebar-active-border);
+    border-radius: 0 4px 4px 0;
+}
+
+/* ============================================
+   BODY & MAIN CONTENT
+   ============================================ */
+body {
+    margin: 0;
+    background-color: var(--body-bg);
+    transition: background-color 0.3s ease;
+}
+
+.main-content {
+    margin-left: 60px;
+    min-height: 100vh;
+}
+
+/* ============================================
+   DROPDOWN (desktop)
+   ============================================ */
+.dropdown-container {
+    position: absolute; /* important – relative so dropdown can position against it */
+    bottom: 700%;
+    /* right: 18rem; */
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100%; /* appears above the dots on desktop too */
+    margin-bottom: 12px;
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 12px;
+    padding: 8px 0;
+    min-width: 160px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.25s ease;
+    z-index: 1000;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-height: 44px;
+}
+
+.dropdown-menu li:hover {
+    background-color: var(--sidebar-hover-bg);
+}
+
+.dropdown-menu li i {
+    font-size: 20px;
+    color: var(--sidebar-icon);
+    pointer-events: none;
+}
+
+.dropdown-menu li span {
+    color: var(--sidebar-icon);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.dropdown-menu li:hover i,
+.dropdown-menu li:hover span {
+    color: var(--sidebar-icon-hover);
+}
+
+/* Arrow pointing down */
+.dropdown-menu::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--sidebar-bg);
+}
+
+/* Active dots icon */
+.dropdown-container i.active {
+    color: var(--sidebar-active-icon);
+    transform: rotate(180deg);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+@media (max-width: 728px) {
+    .side-bar {
+        height: 60px;
+        width: 100%;
+        flex-direction: row;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        border-right: none;
+        border-top: 1px solid var(--sidebar-border);
+        padding: 0 4px;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+        pointer-events: auto;
+    }
+
+    .menu-top,
+    .menu-bottom {
+        flex-direction: row;
+        gap: 2px;
+        height: 100%;
+        width: auto;
+        pointer-events: auto;
+    }
+
+    .menu-top li,
+    .menu-bottom li {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        pointer-events: auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .menu-top li i,
+    .menu-bottom li i {
+        font-size: 22px;
+        pointer-events: none;
+    }
+
+    /* Hide left border, show bottom indicator */
+    .menu-top li.active::before {
+        display: none;
+    }
+
+    .menu-top li.active::after {
+        content: '';
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 18px;
+        height: 3px;
+        background-color: var(--sidebar-active-border);
+        border-radius: 4px 4px 0 0;
+        pointer-events: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-bottom: 70px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Dropdown on mobile – appears above the bar */
+    .dropdown-menu {
+        bottom: 62px;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 0;
+        min-width: 150px;
+        max-width: 200px;
+        z-index: 1100;
+    }
+
+    /* Flip arrow so it points downward toward the bar */
+    .dropdown-menu::after {
+        bottom: auto;
+        top: -8px;
+        border-top: none;
+        border-bottom: 8px solid var(--sidebar-bg);
+    }
+}
