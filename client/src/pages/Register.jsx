@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config';
 import axios from 'axios';
 import '../styles/Login.css'; // reuse styles
 
@@ -25,7 +26,7 @@ function Register() {
         }
 
         try {
-            await axios.post('http://localhost:5000/api/auth/register', {
+            await axios.post(`${API_BASE_URL}/api/auth/register`,  {
                 name,
                 email,
                 password
