@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import socket from '../utils/socket';
 import '../styles/Home.css';
 
-const API = 'http://localhost:5000';
-// import { API_BASE_URL } from '../config';
+// const API = 'http://localhost:5000';
+import { API_BASE_URL } from '../config';
 
 // ============================================================
 // MESSAGE TICKS COMPONENT
