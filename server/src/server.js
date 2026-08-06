@@ -30,6 +30,11 @@ const io = new Server(server, {
 // Database
 connectDB();
 
+// TEST ROUTE - Add this FIRST
+app.get('/api/test', (req, res) => {
+    res.json({ message: 'Backend is working!' });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/friends', require('./routes/friendRoutes'));
@@ -41,7 +46,6 @@ app.use('/api/status', require('./routes/statusRoutes'));
 socketIO(io);
 
 const PORT = process.env.PORT || 5000;
-
 
 server.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
