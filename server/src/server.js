@@ -1,3 +1,11 @@
+// ERROR HANDLING
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection:', reason);
+});
+
 const dns = require('node:dns');
 dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
 require('dotenv').config();
@@ -15,7 +23,7 @@ const socketIO = require('./socket/socket');
 const app = express();
 const server = http.createServer(app);
 
-// SIMPLEST CORS - ALLOW EVERYTHING
+// CORS
 app.use(cors());
 app.use(express.json());
 
@@ -30,17 +38,32 @@ const io = new Server(server, {
 // Database
 connectDB();
 
-// TEST ROUTE - Add this FIRST
+// TEST ROUTE - This MUST work
 app.get('/api/test', (req, res) => {
-    res.json({ message: 'Backend is working!' });
+    res.json({ 
+        message: 'Backend is working!',
+        timestamp: new Date().toISOString()
+    });
 });
 
 // Routes
+console.log('📦 Registering routes...');
 app.use('/api/auth', authRoutes);
 app.use('/api/friends', require('./routes/friendRoutes'));
 app.use('/api/messages', require('./routes/messageRoutes'));
 app.use('/api/groups', require('./routes/groupRoutes'));
 app.use('/api/status', require('./routes/statusRoutes'));
+console.log('✅ Routes registered');
+
+// 404 handler - ADD THIS
+app.use((req, res) => {
+    console.log(`❌ 404: ${req.method} ${req.url}`);
+    res.status(404).json({ 
+        error: 'Route not found',
+        path: req.url,
+        method: req.method
+    });
+});
 
 // Socket.IO
 socketIO(io);
@@ -49,4 +72,5 @@ const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
+    console.log(`✅ Test route: http://localhost:${PORT}/api/test`);
 });
