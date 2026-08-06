@@ -16,13 +16,20 @@ const socketIO = require('./socket/socket');
 const app = express();
 const server = http.createServer(app);
 
-// ✅ CORS config — must match exactly, no trailing slash
 const corsOptions = {
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  origin: [
+    "http://localhost:3000",
+    "https://connecthub-fronted.onrender.com"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 };
 
+app.use(cors(corsOptions));
+
+const io = new Server(server, {
+  cors: corsOptions
+});
 // ✅ Apply same CORS config to both Express and Socket.IO
 app.use(cors(corsOptions));
 app.use(express.json());
