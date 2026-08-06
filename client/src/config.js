@@ -1,1 +1,1 @@
-export const API_URL = 'https://connecthub-api-9cp7.onrender.com/api';
+export const API_URL = 'https://connecthub-new-1.onrender.com/api';
