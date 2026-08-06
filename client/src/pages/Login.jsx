@@ -42,7 +42,7 @@ function Login() {
                         alt="ConnectHub Logo" 
                     />
                     <h1>Connect.<br />Chat.<br />Stay close.</h1>
-                    <p>Simple, secure and reliable messaging for everyone, everywhere</p>
+                    <p>Simple, secure and reliable messaging for everyone, everywhere and anywhere</p>
                 </div>
             </div>
 
