@@ -16,12 +16,10 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-    origin: [
-        "http://localhost:3000",
-        "https://connecthub-fronted.onrender.com"
-    ],
+    origin: true, // Reflects request origin
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 };
 
 app.use(cors(corsOptions));
