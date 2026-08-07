@@ -42,7 +42,6 @@ const loginUser = async (req, res) => {
             { expiresIn: "1h" }
         );
 
-        // ✅ NOW returning user object alongside token
         const user = {
             _id: UserExists._id,
             name: UserExists.name,
@@ -93,7 +92,6 @@ const updateProfile = async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Only update fields that are actually provided
         if (name !== undefined) user.name = name;
         if (bio !== undefined) user.bio = bio;
         if (avatar !== undefined) user.avatar = avatar;
