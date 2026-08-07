@@ -55,90 +55,212 @@ function Login() {
     }
   };
 
-  return (
-    <div className="login-wrapper">
-      {/* LEFT SIDEBAR - Laptop Only */}
-      <div className="sidebar">
-        <div className="sidebar-content">
+return (
+  <div className="login-page">
+
+    {/* ========= LEFT PANEL ========= */}
+    <section className="login-left">
+
+      <div className="left-content">
+
+        <div className="brand">
           <img
             src="https://res.cloudinary.com/daaiil1ah/image/upload/v1784995479/free-whatsapp-logo-icon-4456-thumb_cvjd7y.png"
             alt="ConnectHub Logo"
           />
-          <h1>
-            Connect. <br /> Chat. <br />
-            <span> Stay Close.</span>
-          </h1>
-          <p>Simple, secure and reliable messaging for everyone, everywhere</p>
-          <div className="phone-img">
-            <img
-              src="https://res.cloudinary.com/daaiil1ah/image/upload/v1785069358/OIP__1_-removebg-preview_md68ci.png"
-              alt=""
-            />
+
+          <div>
+            <h1>ConnectHub</h1>
+            <p>Real-time conversations.</p>
           </div>
         </div>
+
+        <div className="hero-text">
+          <h2>
+            Connect.
+            <br />
+            Chat.
+            <br />
+            Stay Close.
+          </h2>
+
+          <p>
+            A modern messaging platform built for fast, secure and
+            real-time communication. Designed to keep everyone connected,
+            anywhere in the world.
+          </p>
+        </div>
+
+        <div className="chat-preview">
+
+          <div className="message received">
+            <span className="avatar">😊</span>
+
+            <div className="bubble">
+              <h5>Sarah</h5>
+              <p>Hey! Are we still meeting today?</p>
+              <small>10:30 AM</small>
+            </div>
+          </div>
+
+          <div className="message sent">
+
+            <div className="bubble">
+              <h5>You</h5>
+              <p>Absolutely! I'll be there in 10 mins.</p>
+              <small>10:31 AM</small>
+            </div>
+
+            <span className="avatar">🚀</span>
+
+          </div>
+
+        </div>
+
+        <div className="features">
+
+          <div className="feature-card">
+            <span>⚡</span>
+            <h4>Fast</h4>
+            <p>Instant messaging</p>
+          </div>
+
+          <div className="feature-card">
+            <span>🔒</span>
+            <h4>Secure</h4>
+            <p>Private conversations</p>
+          </div>
+
+          <div className="feature-card">
+            <span>🌍</span>
+            <h4>Anywhere</h4>
+            <p>Stay connected</p>
+          </div>
+
+        </div>
+
       </div>
 
-      {/* RIGHT SIDE - Login Form */}
-      <div className="login-container">
-        <div className="login-box">
-          <div className="welcome-back">
-            <img
-              className="mobile-logo"
-              src="https://res.cloudinary.com/daaiil1ah/image/upload/v1784995479/free-whatsapp-logo-icon-4456-thumb_cvjd7y.png"
-              alt="ConnectHub Logo"
+    </section>
+
+    {/* ========= RIGHT PANEL ========= */}
+
+    <section className="login-right">
+
+      <div className="login-box">
+
+        <div className="mobile-logo">
+
+          <img
+            src="https://res.cloudinary.com/daaiil1ah/image/upload/v1784995479/free-whatsapp-logo-icon-4456-thumb_cvjd7y.png"
+            alt="logo"
+          />
+
+        </div>
+
+        <div className="welcome-back">
+
+          <h2>Welcome Back 👋</h2>
+
+          <p>
+            Login to continue your conversations.
+          </p>
+
+        </div>
+
+        <form onSubmit={handleLogin}>
+
+          <div className="input-group">
+
+            <label>Email</label>
+
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
-            <h1>Welcome back</h1>
-            <p>Login to continue chatting with your friends</p>
+
           </div>
 
-          <form onSubmit={handleLogin}>
-            <div className="input-group">
-              <input
-                type="email"
-                placeholder="Email or phone number"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+          <div className="input-group">
 
-            <div className="forgot-link">
-              <a href="#">Forgot Password?</a>
-            </div>
+            <label>Password</label>
 
-            {error && <p className="error-msg">{error}</p>}
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-            <button type="submit" className="btn-login" disabled={loading}>
-              {loading ? '⏳ Logging in...' : 'Login'}
-            </button>
-          </form>
-
-          <div className="divider">
-            <hr /> OR <hr />
           </div>
 
-          <button className="btn-google">
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-              alt="Google"
-            />
-            Continue with Google
+          <div className="login-options">
+
+            <label className="remember">
+
+              <input type="checkbox" />
+
+              <span>Remember me</span>
+
+            </label>
+
+            <a href="#">Forgot password?</a>
+
+          </div>
+
+          {error && (
+            <p className="error-msg">{error}</p>
+          )}
+
+          <button
+            className="btn-login"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
 
-          <div className="signup-text">
-            Don't have an account? <a href="/register">Sign up</a>
-          </div>
+        </form>
+
+        <div className="divider">
+
+          <span></span>
+
+          <p>OR</p>
+
+          <span></span>
+
         </div>
+
+        <button className="btn-google">
+
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+            alt="google"
+          />
+
+          Continue with Google
+
+        </button>
+
+        <div className="signup-text">
+
+          Don't have an account?
+
+          <a href="/register"> Sign Up</a>
+
+        </div>
+
       </div>
-    </div>
-  );
+
+    </section>
+
+  </div>
+);
 }
 
 export default Login;

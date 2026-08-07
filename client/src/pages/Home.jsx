@@ -231,48 +231,64 @@ function Home() {
     };
 
     // ============================================================
-    // SEND PRIVATE MESSAGE
+    // SEND PRIVATE MESSAGE - FIXED
     // ============================================================
-    const sendMessage = () => {
+    const sendMessage = async () => {
         if (!newMessage.trim() || !selectedChat) return;
-        const sentText = newMessage;
+        const sentText = newMessage.trim();
 
-        socket.emit('private-message', { receiverId: selectedChat._id, text: sentText });
+        // Emit to socket
+        socket.emit('private-message', { 
+            receiverId: selectedChat._id, 
+            text: sentText 
+        });
 
-        setMessages(prev => [...prev, {
+        // Save message locally
+        const tempMessage = {
             senderId: user._id,
             text: sentText,
             time: new Date().toLocaleTimeString(),
             delivered: false,
-            read: false
-        }]);
+            read: false,
+            _id: Date.now() // temporary ID
+        };
 
+        setMessages(prev => [...prev, tempMessage]);
+
+        // Update friends list
         setFriends(prev => {
             const updated = prev.map(f =>
                 f._id === selectedChat._id ? { ...f, lastMessage: sentText, time: 'Just now' } : f
             );
             const idx = updated.findIndex(f => f._id === selectedChat._id);
-            const [chat] = updated.splice(idx, 1);
-            return [chat, ...updated];
+            if (idx > -1) {
+                const [chat] = updated.splice(idx, 1);
+                return [chat, ...updated];
+            }
+            return updated;
         });
 
         setNewMessage('');
     };
 
     // ============================================================
-    // SEND GROUP MESSAGE
+    // SEND GROUP MESSAGE - FIXED
     // ============================================================
-    const sendGroupMessage = () => {
+    const sendGroupMessage = async () => {
         if (!newMessage.trim() || !selectedGroup) return;
-        const sentText = newMessage;
+        const sentText = newMessage.trim();
 
-        socket.emit('group-message', { groupId: selectedGroup._id, text: sentText });
+        socket.emit('group-message', { 
+            groupId: selectedGroup._id, 
+            text: sentText 
+        });
 
         setGroupMessages(prev => [...prev, {
             senderId: user._id,
             senderName: 'You',
             text: sentText,
-            time: new Date().toLocaleTimeString()
+            time: new Date().toLocaleTimeString(),
+            _id: Date.now()
         }]);
 
         setGroups(prev => {
@@ -280,8 +296,11 @@ function Home() {
                 g._id === selectedGroup._id ? { ...g, lastMessage: sentText, time: 'Just now' } : g
             );
             const idx = updated.findIndex(g => g._id === selectedGroup._id);
-            const [group] = updated.splice(idx, 1);
-            return [group, ...updated];
+            if (idx > -1) {
+                const [group] = updated.splice(idx, 1);
+                return [group, ...updated];
+            }
+            return updated;
         });
 
         setNewMessage('');
